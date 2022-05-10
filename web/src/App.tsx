@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Repo from './Components/Repo';
+import AdditionalInformation from './Components/AdditionalInformation';
 import './App.css';
 import axios from 'axios';
 export function App() {
@@ -13,9 +15,17 @@ export function App() {
       });
   }, [repositories]);
   return (
-    <div className="App">
-      <h2>Repositories</h2>
-      <Repo repositories={repositories} />
-    </div>
+    <Router>
+      <div className="App">
+        <h2>Repositories</h2>
+        <Routes>
+          <Route path="/" element={<Repo repositories={repositories} />} />
+          <Route
+            path="/:id"
+            element={<AdditionalInformation repositories={repositories} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Repo({ repositories }) {
   const [language, setLanguage] = useState('');
@@ -29,7 +30,7 @@ function Repo({ repositories }) {
         .map((repo) => {
           return (
             <div key={repo.id}>
-              <h5>Repository Name: {repo.name}</h5>
+              <Link to={`/${repo.id}`}>Repository Name: {repo.name}</Link>
               <p>Description: {repo.description}</p>
               <p>Languange: {repo.language}</p>
               <p>forks: {repo.forks}</p>
